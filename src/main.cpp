@@ -974,6 +974,13 @@ int64_t GetProofOfWorkReward(int64_t nFees)
     {
 		nSubsidy = 40000000 * COIN;  // 400mil
     } 
+
+    // hardCap v2.1
+    else if(pindexBest->nMoneySupply > MAX_MONEY)
+    {
+        LogPrint("MINEOUT", "GetProofOfWorkReward(): create=%s nFees=%d\n", FormatMoney(nFees), nFees);
+        return nFees;
+    }
 	
 	if (fDebug && GetBoolArg("-printcreation", false))
     LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
@@ -986,6 +993,16 @@ int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees)
 {
     int64_t nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8);
 	
+    if(pindexBest->GetBlockTime() > 1500411600)
+        nSubsidy = nCoinAge * END_YEAR_REWARD * 33 / (365 * 33 + 8);
+
+     // hardCap v2.1
+    if(pindexBest->nMoneySupply > MAX_MONEY)
+    {
+        LogPrint("MINEOUT", "GetProofOfStakeReward(): create=%s nFees=%d\n", FormatMoney(nFees), nFees);
+        return nFees;
+    }
+
 	if (fDebug && GetBoolArg("-printcreation", false))
     LogPrint("creation", "GetProofOfStakeReward(): create=%s nCoinAge=%d\n", FormatMoney(nSubsidy), nCoinAge);
 
