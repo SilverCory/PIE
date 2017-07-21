@@ -993,9 +993,12 @@ int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees)
 {
     int64_t nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8);
 	
+    /* the following two lines led to wallet incompability in 1.0.0.2 since 2017-07-18
+     *
     if(pindexBest->GetBlockTime() > 1500411600)
         nSubsidy = nCoinAge * END_YEAR_REWARD * 33 / (365 * 33 + 8);
-
+     */
+    
      // hardCap v2.1
     if(pindexBest->nMoneySupply > MAX_MONEY)
     {
