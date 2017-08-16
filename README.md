@@ -11,7 +11,7 @@ they think their feature or bug fix is ready.
 
 The patch will be accepted if there is broad consensus that it is a
 good thing.  Developers should expect to rework and resubmit patches
-if they don't match the project's coding conventions (see coding.txt)
+if they don't match the project's coding conventions (see coding.txt for complete details)
 or are controversial.
 
 The master branch is regularly built and tested, but is not guaranteed
